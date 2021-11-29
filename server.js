@@ -55,6 +55,8 @@ app.delete("app/delete/user/:id",(req,res)=>{
 
 // Default response for any other request
 app.use(function(req, res){
-	res.json({"message":"Endpoint not found. (404)"});
-    res.status(404);
+	const stmt = db.prepare("DELETE FROM userinfo WHERE id = ?").run(req.params.id);
+	res.status(201).json({"message":"1 record deleted: ID %ID% (200)".replace("%ID%",req.params.id)});
+	// res.json({"message":"Endpoint not found. (404)"});
+    // res.status(404);
 });
