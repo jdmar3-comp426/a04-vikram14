@@ -17,7 +17,7 @@ app.listen(HTTP_PORT, () => {
 });
 // READ (HTTP method GET) at root endpoint /app/
 app.get("/app/", (req, res, next) => {
-    res.json({"message":"Your API is working!"});
+    res.json({"message":"Your API works! (200)"});
 	res.status(200);
 });
 
@@ -48,7 +48,7 @@ app.patch("/app/update/user/:id",(req,res)=>{
 })
 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
-app.delete("/app/delete/:id",(req,res)=>{
+app.delete("app/delete/user/:id",(req,res)=>{
 	const stmt = db.prepare("DELETE FROM userinfo WHERE id = ?").run(req.params.id);
 	res.status(201).json({"message":"1 record deleted: ID %ID% (200)".replace("%ID%",req.params.id)});
 })
